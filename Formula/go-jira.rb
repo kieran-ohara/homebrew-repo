@@ -6,7 +6,7 @@ class GoJira < Formula
 	desc "simple jira command line client in Go"
 	homepage "https://github.com/Netflix-Skunkworks/go-jira"
 	url "https://github.com/Netflix-Skunkworks/go-jira/releases/download/v1.0.5/jira-darwin-10.6-amd64"
-	sha256 "b9d975396bb6570489750a806ada87fc2a00a342cb65efe373d3d24748885bb3"
+	sha256 "060f540c0a2b9bb82330ebe270d136240f9559212abbd6b0b5dde5a2d8c0fb08"
 	version "1.0.5"
 
 	depends_on "go" => :build
