@@ -1,11 +1,11 @@
 require "language/node"
 
 class ClientCertProxy < Formula
-  desc "Proxies requests, providing client side certificates"
-  homepage "https://github.com/kieran-bamforth/client-cert-proxy"
-  head "https://github.com/kieran-bamforth/client-cert-proxy.git", branch: "master"
+	desc "Proxies requests, providing client side certificates"
+	homepage "https://github.com/kieran-bamforth/client-cert-proxy"
+	head "https://github.com/kieran-bamforth/client-cert-proxy.git", branch: "master"
 
-  depends_on "node"
+	depends_on "node"
 
 	plist_options :startup => true
 
@@ -41,7 +41,7 @@ class ClientCertProxy < Formula
 			<string>/dev/null</string>
 		</dict>
 	</plist>
-	EOS
+		EOS
 	end
 
 	def install
