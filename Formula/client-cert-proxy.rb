@@ -18,7 +18,8 @@ class ClientCertProxy < Formula
             <string>#{plist_name}</string>
             <key>ProgramArguments</key>
             <array>
-                <string>#{opt_bin}/node #{opt_bin}/client-cert-proxy</string>
+                <string>/usr/local/bin/node</string>
+                <string>#{opt_bin}/client-cert-proxy</string>
             </array>
             <key>EnvironmentVariables</key>
             <dict>
