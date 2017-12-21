@@ -28,9 +28,9 @@ class ClientCertProxy < Formula
                 <key>TARGET</key>
                 <string>https://jira.dev.bbc.co.uk</string>
                 <key>CERT</key>
-                <string>/Users/kieranbamforth/src/dotfiles/bbc/client.crt</string>
+                <string>/etc/pki/tls/certs/client.crt</string>
                 <key>KEY</key>
-                <string>/Users/kieranbamforth/src/dotfiles/bbc/client.key</string>
+                <string>/etc/pki/tls/private/client.key</string>
             </dict>
             <key>RunAtLoad</key>
             <true/>
