@@ -1,6 +1,6 @@
 require "language/node"
 
-class ESLint < Formula
+class Eslint < Formula
     desc "A fully pluggable tool for identifying and reporting on patterns in JavaScript"
     homepage "https://eslint.org/"
     url "https://registry.npmjs.org/eslint/-/eslint-4.16.0.tgz"
