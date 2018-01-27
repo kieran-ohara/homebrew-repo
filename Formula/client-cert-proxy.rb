@@ -5,8 +5,6 @@ class ClientCertProxy < Formula
 	homepage "https://github.com/kieran-bamforth/client-cert-proxy"
 	head "https://github.com/kieran-bamforth/client-cert-proxy.git", branch: "master"
 
-	depends_on "node"
-
     plist_options :startup => true
 
     def plist; <<~EOS
