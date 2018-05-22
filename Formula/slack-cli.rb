@@ -3,7 +3,7 @@ class SlackCli < Formula
     homepage "https://github.com/regisb/slack-cli"
     url "https://files.pythonhosted.org/packages/10/00/8a4b5dda9710e1a1e82b9c5b31fe14161710a563add0ec003240dcd38f45/slack-cli-2.0.3.tar.gz"
     sha256 "1569947775202fa564e3b048aa416b190a115108c18b6a790ae6d250cd98c9c6"
-    version "0.0.1"
+    version "0.0.2"
 
     include Language::Python::Virtualenv
 
@@ -60,6 +60,6 @@ class SlackCli < Formula
 
     def install
         virtualenv_install_with_resources
-        bin.install_symlink "#{libexec}/bin/sqlmap"
+        bin.install_symlink "#{libexec}/bin/slack-cli"
     end
 end
