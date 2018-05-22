@@ -3,7 +3,7 @@ class SlackCli < Formula
     homepage "https://github.com/regisb/slack-cli"
     url "https://files.pythonhosted.org/packages/10/00/8a4b5dda9710e1a1e82b9c5b31fe14161710a563add0ec003240dcd38f45/slack-cli-2.0.3.tar.gz"
     sha256 "1569947775202fa564e3b048aa416b190a115108c18b6a790ae6d250cd98c9c6"
-    version "0.0.2"
+    version "0.0.3"
 
     include Language::Python::Virtualenv
 
@@ -56,6 +56,11 @@ class SlackCli < Formula
     resource "websocket-client" do
         url "https://files.pythonhosted.org/packages/c9/61/ca78ba8e931bd148725434298196c6a4d032e29268fd36c478ffed318a2c/websocket_client-0.39.0.tar.gz"
         sha256 "87c6ba46565d62bcdbc5ac1d78c9a6d66663560ab2ca566cf9c6ac406de13425"
+    end
+
+    resource "backports.ssl_match_hostname" do
+        url "https://files.pythonhosted.org/packages/76/21/2dc61178a2038a5cb35d14b61467c6ac632791ed05131dda72c20e7b9e23/backports.ssl_match_hostname-3.5.0.1.tar.gz"
+        sha256 "502ad98707319f4a51fa2ca1c677bd659008d27ded9f6380c79e8932e38dcdf2"
     end
 
     def install
