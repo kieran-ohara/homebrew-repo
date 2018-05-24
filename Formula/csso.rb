@@ -1,3 +1,5 @@
+require "language/node"
+
 class Csso < Formula
     desc "CSS minifier with structural optimizations."
   homepage "https://github.com/css/csso"
