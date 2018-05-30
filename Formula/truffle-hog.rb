@@ -34,6 +34,6 @@ class TruffleHog < Formula
 
   def install
       virtualenv_install_with_resources
-      bin.install_symlink "#{libexec}/bin/sqlmap"
+      bin.install_symlink "#{libexec}/bin/trufflehog"
   end
 end
