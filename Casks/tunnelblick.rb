@@ -1,34 +1,39 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-class Tunnelblick < Formula
-    desc ""
-    homepage ""
-    url "https://github.com/Tunnelblick/Tunnelblick/releases/tag/v3.7.6a"
-    sha256 "9c16a9069dd57ac5e5aafec1411df2f4baebddd6b5554299d6496625ed2ca393"
-    # depends_on "cmake" => :build
+cask 'tunnelblick' do
+    version '3.7.6a,5080'
+    sha256 '42b50bd09296f98e55bdf4262a33d42067d1922157b010a02976cc74f514b677'
 
-    def install
-        # ENV.deparallelize  # if your formula fails when building in parallel
-        # Remove unrecognized options if warned by configure
-        system "./configure", "--disable-debug",
-            "--disable-dependency-tracking",
-            "--disable-silent-rules",
-            "--prefix=#{prefix}"
-        # system "cmake", ".", *std_cmake_args
-        system "make", "install" # if this fails, try separate make/make install steps
+    # github.com/Tunnelblick/Tunnelblick was verified as official when first introduced to the cask
+    url 'https://github.com/Tunnelblick/Tunnelblick/releases/download/v3.5.24/Tunnelblick_3.5.24_build_4270.5031.dmg'
+    appcast 'https://github.com/Tunnelblick/Tunnelblick/releases.atom'
+    name 'Tunnelblick'
+    homepage 'https://www.tunnelblick.net/'
+    gpg "#{url}.asc", key_id: '76df975a1c5642774fb09868ff5fd80e6bb9367e'
+
+    auto_updates true
+
+    app 'Tunnelblick.app'
+
+    uninstall_preflight do
+        set_ownership "#{appdir}/Tunnelblick.app"
     end
 
-    test do
-        # `test do` will create, run in and delete a temporary directory.
-        #
-        # This test will fail and we won't accept that! For Homebrew/homebrew-core
-        # this will need to be a test that verifies the functionality of the
-        # software. Run the test with `brew test tunnelblick`. Options passed
-        # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-        #
-        # The installed folder is not in the path, so use the entire path to any
-        # executables being tested: `system "#{bin}/program", "do", "something"`.
-        system "false"
-    end
+    uninstall launchctl: [
+        'net.tunnelblick.tunnelblick.LaunchAtLogin',
+        'net.tunnelblick.tunnelblick.tunnelblickd',
+    ],
+    quit:      'net.tunnelblick.tunnelblick'
+
+    zap trash: [
+        '~/Library/Application Support/Tunnelblick',
+        '~/Library/Caches/net.tunnelblick.tunnelblick',
+        '~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/Tunnelblick*',
+        '~/Library/Cookies/net.tunnelblick.tunnelblick.binarycookies',
+        '~/Library/Preferences/net.tunnelblick.tunnelblick.plist',
+        '/Library/Application Support/Tunnelblick',
+    ]
+
+    caveats <<~EOS
+    For security reasons, #{token} must be installed to /Applications,
+    and will request to be moved at launch.
+    EOS
 end
