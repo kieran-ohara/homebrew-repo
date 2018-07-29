@@ -5,45 +5,9 @@ class Lua < Formula
     sha256 "b9e2e4aad6789b3b63a056d442f7b39f0ecfca3ae0f1fc0ae4e9614401b69f4b"
     revision 5
 
-    bottle do
-        cellar :any
-        sha256 "733eaa4f5a97d68120cbc908c0445b554e18dd8edb4685db9f3d34d7abfbe120" => :high_sierra
-        sha256 "0d8a194d00eacb6543d942ea97af012ef3037a19a755e51a2d8411bf212698d4" => :sierra
-        sha256 "29553ce97e43d24c7b35eb9a44800e0e2b94e83ac79dff25d6d0d0b58590ad7e" => :el_capitan
-    end
-
-    pour_bottle? do
-        reason "The bottle needs to be installed into /usr/local."
-        # DomT4: I'm pretty sure this can be fixed, so don't leave this in place forever.
-        # https://github.com/Homebrew/legacy-homebrew/issues/44619
-        satisfy { HOMEBREW_PREFIX.to_s == "/usr/local" }
-    end
-
-    option "with-completion", "Enables advanced readline support"
-    option "without-sigaction", "Revert to ANSI signal instead of improved POSIX sigaction"
-    option "without-luarocks", "Don't build with Luarocks support embedded"
-
     # Be sure to build a dylib, or else runtime modules will pull in another static copy of liblua = crashy
     # See: https://github.com/Homebrew/legacy-homebrew/pull/5043
     patch :DATA
-
-    # completion provided by advanced readline power patch
-    # See http://lua-users.org/wiki/LuaPowerPatches
-    if build.with? "completion"
-        patch do
-            url "https://luajit.org/patches/lua-5.2.0-advanced_readline.patch"
-            sha256 "33d32d11fce4f85b88ce8f9bd54e6a6cbea376dfee3dbf8cdda3640e056bc29d"
-        end
-    end
-
-    # sigaction provided by posix signalling power patch
-    if build.with? "sigaction"
-        patch do
-            # original patch file (not available): http://lua-users.org/files/wiki_insecure/power_patches/5.2/lua-5.2.3-sig_catch.patch
-            url "https://raw.githubusercontent.com/Homebrew/patches/d674e02d1097b21032198854080204680b616b61/lua/lua-5.2.3-sig_catch.patch"
-            sha256 "f2e77f73791c08169573658caa3c97ba8b574c870a0a165972ddfbddb948c164"
-        end
-    end
 
     # Don't use the https://luarocks.org/releases/luarocks-x.y.z.tar.gz URL
     # directly as it redirects to the HTTP version of the below URL.
@@ -81,30 +45,28 @@ class Lua < Formula
 
         # This resource must be handled after the main install, since there's a lua dep.
         # Keeping it in install rather than postinstall means we can bottle.
-        if build.with? "luarocks"
-            resource("luarocks").stage do
-                ENV.prepend_path "PATH", bin
+        resource("luarocks").stage do
+            ENV.prepend_path "PATH", bin
 
-                system "./configure", "--prefix=#{libexec}", "--rocks-tree=#{HOMEBREW_PREFIX}",
-                    "--sysconfdir=#{etc}/luarocks52", "--with-lua=#{prefix}",
-                    "--lua-version=5.2", "--versioned-rocks-dir"
-                    system "make", "build"
-                    system "make", "install"
+            system "./configure", "--prefix=#{libexec}", "--rocks-tree=#{HOMEBREW_PREFIX}",
+                "--sysconfdir=#{etc}/luarocks52", "--with-lua=#{prefix}",
+                "--lua-version=5.2", "--versioned-rocks-dir"
+                system "make", "build"
+                system "make", "install"
 
-                    (pkgshare/"5.2/luarocks").install_symlink Dir["#{libexec}/share/lua/5.2/luarocks/*"]
-                    bin.install_symlink libexec/"bin/luarocks-5.2"
-                    bin.install_symlink libexec/"bin/luarocks-admin-5.2"
-                    bin.install_symlink libexec/"bin/luarocks"
-                    bin.install_symlink libexec/"bin/luarocks-admin"
+                (pkgshare/"5.2/luarocks").install_symlink Dir["#{libexec}/share/lua/5.2/luarocks/*"]
+                bin.install_symlink libexec/"bin/luarocks-5.2"
+                bin.install_symlink libexec/"bin/luarocks-admin-5.2"
+                bin.install_symlink libexec/"bin/luarocks"
+                bin.install_symlink libexec/"bin/luarocks-admin"
 
-                    # This block ensures luarock exec scripts don't break across updates.
-                    inreplace libexec/"share/lua/5.2/luarocks/site_config.lua" do |s|
-                        s.gsub! libexec.to_s, opt_libexec
-                        s.gsub! include.to_s, "#{HOMEBREW_PREFIX}/include"
-                        s.gsub! lib.to_s, "#{HOMEBREW_PREFIX}/lib"
-                        s.gsub! bin.to_s, "#{HOMEBREW_PREFIX}/bin"
-                    end
-            end
+                # This block ensures luarock exec scripts don't break across updates.
+                inreplace libexec/"share/lua/5.2/luarocks/site_config.lua" do |s|
+                    s.gsub! libexec.to_s, opt_libexec
+                    s.gsub! include.to_s, "#{HOMEBREW_PREFIX}/include"
+                    s.gsub! lib.to_s, "#{HOMEBREW_PREFIX}/lib"
+                    s.gsub! bin.to_s, "#{HOMEBREW_PREFIX}/bin"
+                end
         end
     end
 
