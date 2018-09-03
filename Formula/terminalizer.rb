@@ -1,6 +1,7 @@
 require "language/node"
 
 class Terminzlizer < Formula
+  version '0.2.11'
   desc "CSS minifier with structural optimizations."
   homepage "https://github.com/faressoft/terminalizer"
   url "https://registry.npmjs.org/terminalizer/-/terminalizer-0.2.11.tgz"
