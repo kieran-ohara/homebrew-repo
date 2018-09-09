@@ -5,7 +5,7 @@ class JavascriptTypescriptLangserver < Formula
   desc "JavaScript and TypeScript code intelligence through the Language Server Protocol"
   homepage "https://github.com/sourcegraph/javascript-typescript-langserver"
   url "https://registry.npmjs.org/javascript-typescript-langserver/-/javascript-typescript-langserver-2.11.1.tgz"
-  sha256 "f20110205a67342a6ee86e85e709815d7d79a7374e7b044a386b65c7379818b"
+  sha256 "20110205a67342a6ee86e85e709815d7d79a7374e7b044a386b65c7379818b"
 
   plist_options :startup => true
 
