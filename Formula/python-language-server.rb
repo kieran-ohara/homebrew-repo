@@ -5,6 +5,33 @@ class PythonLanguageServer < Formula
   sha256 "0b81bf42200c7d11e066907040314038525fa53333ac98e7691485166db60fde"
   version "0.21.2"
 
+  plist_options :startup => true
+
+  def plist; <<~EOS
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>#{plist_name}</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/local/bin/pyls</string>
+      <string>--tcp</string>
+      <string>--port</string>
+      <string>2090</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/tmp/pyls.stderr</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/pyls.stdout</string>
+  </dict>
+  </plist>
+  EOS
+  end
+
   include Language::Python::Virtualenv
 
   resource "configparser" do
