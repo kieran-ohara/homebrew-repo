@@ -1,16 +1,17 @@
 require "language/node"
 
 class ClientCertProxy < Formula
-    desc "Proxies requests, providing client side certificates"
-    homepage "https://github.com/kieran-bamforth/client-cert-proxy"
-    url "https://github.com/kieran-bamforth/client-cert-proxy/archive/1.0.0.tar.gz"
-    sha256 "61930a62d3de07348f2400bf47e4048d171f60a9f55beea53a71b7a11c2fdbf3"
+  version "1.0.0"
+  desc "Proxies requests, providing client side certificates"
+  homepage "https://github.com/kieran-bamforth/client-cert-proxy"
+  url "https://github.com/kieran-bamforth/client-cert-proxy/archive/1.0.0.tar.gz"
+  sha256 "61930a62d3de07348f2400bf47e4048d171f60a9f55beea53a71b7a11c2fdbf3"
 
-    plist_options :startup => true
+  plist_options :startup => true
 
-    depends_on "node"
+  depends_on "node"
 
-    def plist; <<~EOS
+  def plist; <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
@@ -44,11 +45,11 @@ class ClientCertProxy < Formula
         </dict>
     </plist>
     EOS
-    end
+  end
 
-    def install
-        system "npm", "install", *Language::Node.std_npm_install_args(libexec)
-        bin.install_symlink Dir["#{libexec}/bin/*"]
-    end
+  def install
+    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    bin.install_symlink Dir["#{libexec}/bin/*"]
+  end
 
 end
