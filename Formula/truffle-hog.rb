@@ -3,7 +3,7 @@ class TruffleHog < Formula
   homepage "https://github.com/dxa4481/truffleHog"
   url "https://github.com/dxa4481/truffleHog/archive/master.zip"
   version "1.0.0"
-  sha256 "7d9d4a70c12b1904d6ef99ea74f34ff7266a679fbdb66378c43ce14ce0f05d59"
+  sha256 "77f461c8322b37b9f1df2262d94f2bfe532c6ffd38042f34da17007c3da02e82"
 
   resource "gitdb2" do
     url "https://files.pythonhosted.org/packages/84/11/22e68bd46fd545b17d0a0b200cf75c20e9e7b817726a69ad5f3070fd0d3c/gitdb2-2.0.3.tar.gz"
