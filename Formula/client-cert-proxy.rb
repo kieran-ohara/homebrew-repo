@@ -1,11 +1,11 @@
 require "language/node"
 
 class ClientCertProxy < Formula
-  version "1.0.0"
+  version "1.0.1"
   desc "Proxies requests, providing client side certificates"
   homepage "https://github.com/kieran-bamforth/client-cert-proxy"
-  url "https://github.com/kieran-bamforth/client-cert-proxy/archive/1.0.0.tar.gz"
-  sha256 "61930a62d3de07348f2400bf47e4048d171f60a9f55beea53a71b7a11c2fdbf3"
+  url "https://github.com/kieran-bamforth/client-cert-proxy/archive/1.0.1.tar.gz"
+  sha256 "b4355af435e99a5f802b5873e5062982f50331e8f36586229fb8fea6840893be"
 
   plist_options :startup => true
 
