@@ -1,11 +1,11 @@
 require "language/node"
 
 class JavascriptTypescriptLangserver < Formula
-  version "2.11.1"
+  version "2.11.3"
   desc "JavaScript and TypeScript code intelligence through the Language Server Protocol"
   homepage "https://github.com/sourcegraph/javascript-typescript-langserver"
-  url "https://registry.npmjs.org/javascript-typescript-langserver/-/javascript-typescript-langserver-2.11.1.tgz"
-  sha256 "8f20110205a67342a6ee86e85e709815d7d79a7374e7b044a386b65c7379818b"
+  url "https://registry.npmjs.org/javascript-typescript-langserver/-/javascript-typescript-langserver-2.11.3.tgz"
+  sha256 "d69c99918c0ea3b7caab7d45ff9618f21c40968eea1b1863aef442c88ea3a039"
 
   plist_options :startup => true
 
