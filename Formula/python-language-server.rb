@@ -64,6 +64,11 @@ class PythonLanguageServer < Formula
     sha256 "f66073e5506e91d204ab0c614a148d5aa938bdbf104751be66f8ad7a222f5f86"
   end
 
+  resource "rope" do
+    url "https://files.pythonhosted.org/packages/ba/44/714486676aeb10de586f892348973d2e6b7c2be4eaff434caaaa45e19e14/rope-0.17.0.tar.gz"
+    sha256 "658ad6705f43dcf3d6df379da9486529cf30e02d9ea14c5682aa80eb33b649e1"
+  end
+
   def install
     virtualenv_install_with_resources
     bin.install_symlink "#{libexec}/bin/pyls"
