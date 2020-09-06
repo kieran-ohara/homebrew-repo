@@ -1,0 +1,18 @@
+class Python{{ class_name }} < Formula
+  desc "{{ class_name }}"
+  homepage "{{ info.project_urls.Homepage }}"
+  version "{{ info.version }}"
+  url "{{ urls[0].url }}"
+  sha256 "{{ urls[0].digests.sha256 }}"
+  depends_on "python"
+
+  include Language::Python::Virtualenv
+
+  {{ resources }}
+
+  def install
+    virtualenv_install_with_resources
+    bin.install_symlink "#{libexec}/bin/{{ fname }}"
+  end
+
+end
