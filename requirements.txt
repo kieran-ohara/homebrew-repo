@@ -2,3 +2,4 @@ inflection
 ipython
 jinja2
 requests
+PrettyTable

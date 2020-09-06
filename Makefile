@@ -18,3 +18,6 @@ poet/%-venv:
 poet/%.resources: poet/%-venv
 	$</bin/pip install $* homebrew-pypi-poet
 	$</bin/poet $* > $@
+
+python-linters.txt: venv
+	venv/bin/python linters.py
