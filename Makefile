@@ -6,7 +6,7 @@ venv: requirements.txt
 	venv/bin/pip install -r $<
 
 Formula/node-%.rb: node_formula.py node.j2 venv
-	venv/bin/python $< $(PACKAGE_NAME) $* > $@
+	venv/bin/python $< $* $* > $@
 
 Formula/python-%.rb: python_formula.py poet/%.resources python.j2 venv
 	venv/bin/python $< $(PACKAGE_NAME) $* > $@
